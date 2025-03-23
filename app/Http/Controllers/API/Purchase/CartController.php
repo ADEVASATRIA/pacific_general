@@ -28,6 +28,21 @@ class CartController extends Controller
             'items.*.type_ticket_id' => 'required|integer|exists:ticket_types,id',
         ]);
     
+        // Ambil semua ticket_type_id dari request
+        $ticketTypeIds = collect($request->items)->pluck('type_ticket_id');
+    
+        // Cek jumlah tiket yang memiliki type_ticket = 2
+        $memberTickets = TicketType::whereIn('id', $ticketTypeIds)
+            ->where('type_ticket', 2)
+            ->count();
+    
+        if ($memberTickets > 1) {
+            return response()->json([
+                'success' => false,
+                'message' => 'You can only have one membership ticket in the cart.',
+            ], 422);
+        }
+    
         DB::beginTransaction();
         try {
             // 1. Cek atau buat Customer
@@ -57,18 +72,32 @@ class CartController extends Controller
                 ];
             });
     
-            // 3. Jika ada type_ticket = 2 (member), buat MemberPass
+            // 3. Jika ada type_ticket = 2 (member), periksa apakah customer sudah memiliki MemberPass
             foreach ($items as $item) {
                 if ($item['type_purchase'] == 2) {
-                    MemberPass::firstOrCreate([
-                        'customer_id' => $customer->id,
-                        'ticket_type_id' => $item['ticket_type_id'],
-                        'clubhouse_id' => $item['clubhouse_id'],
-                    ], [
-                        'start_date' => now(),
-                        'end_date' => now()->addDays($item['duration']),
-                        'status' => 1,
-                    ]);
+                    $existingMemberPass = MemberPass::where('customer_id', $customer->id)
+                        ->where('status', 1)
+                        ->first();
+    
+                    if ($existingMemberPass) {
+                        // Jika sudah ada MemberPass, perbarui data
+                        $existingMemberPass->update([
+                            'ticket_type_id' => $item['ticket_type_id'],
+                            'clubhouse_id' => $item['clubhouse_id'],
+                            'start_date' => now(),
+                            'end_date' => now()->addDays($item['duration']),
+                        ]);
+                    } else {
+                        // Jika belum ada MemberPass, buat baru
+                        MemberPass::create([
+                            'customer_id' => $customer->id,
+                            'ticket_type_id' => $item['ticket_type_id'],
+                            'clubhouse_id' => $item['clubhouse_id'],
+                            'start_date' => now(),
+                            'end_date' => now()->addDays($item['duration']),
+                            'status' => 1,
+                        ]);
+                    }
                 }
             }
     
