@@ -14,6 +14,9 @@ use App\Models\Purchase;
 use App\Models\PurchaseDetail;
 use App\Models\Ticket;
 use App\Models\TicketEntry;
+use App\Models\ItemCategory;
+use App\Models\Item;
+use App\Models\ItemLog;
 
 return new class extends Migration
 {
@@ -30,6 +33,9 @@ return new class extends Migration
         PurchaseDetail::tableInit();
         Ticket::tableInit();
         TicketEntry::tableInit();
+        ItemCategory::tableInit();
+        Item::tableInit();
+        ItemLog::tableInit();
     }
 
     /**
@@ -48,5 +54,8 @@ return new class extends Migration
         PurchaseDetail::tableDrop();
         Ticket::tableDrop();
         TicketEntry::tableDrop();
+        ItemCategory::tableDrop();
+        Item::tableDrop();
+        ItemLog::tableDrop();
     }
 };
