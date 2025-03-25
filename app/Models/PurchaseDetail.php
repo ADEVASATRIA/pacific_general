@@ -21,6 +21,7 @@ class PurchaseDetail extends DefaultModel
             $table->increments('id');
             $table->unsignedInteger('purchase_id');
             $table->unsignedInteger('ticket_type_id')->nullable();
+            $table->unsignedInteger('item_id')->nullable();
             $table->enum('type_purchase', [1, 2, 3])->comment('1:type_ticket 2:type_items 3:type_package');
             $table->string('name');
             $table->unsignedInteger('qty');
@@ -31,6 +32,7 @@ class PurchaseDetail extends DefaultModel
 
             $table->foreign('purchase_id')->references('id')->on(Purchase::getTableName())->onDelete('cascade')->onUpdate('cascade');
             $table->foreign('ticket_type_id')->references('id')->on(TicketType::getTableName())->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('item_id')->references('id')->on(Item::getTableName())->onDelete('cascade')->onUpdate('cascade');
         });
     }
 
@@ -40,5 +42,9 @@ class PurchaseDetail extends DefaultModel
     
     public function ticketType(){
         return $this->belongsTo(TicketType::class);
+    }
+
+    public function item(){
+        return $this->belongsTo(Item::class);
     }
 }

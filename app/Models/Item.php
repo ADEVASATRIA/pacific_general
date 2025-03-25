@@ -38,4 +38,8 @@ class Item extends DefaultModel
     public function itemlogs(){
         return $this->hasMany(ItemLog::class, 'item_id');
     }
+
+    public function purchaseDetails(){
+        return $this->hasMany(PurchaseDetail::class, 'item_id');
+    }
 }
