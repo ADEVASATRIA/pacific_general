@@ -8,6 +8,7 @@ use App\Http\Controllers\API\Purchase\CartController;
 use App\Http\Controllers\API\Purchase\CheckoutController;
 use App\Http\Controllers\API\ClubhouseController;
 use App\Http\Controllers\API\Item\ItemCategoryController;
+use App\Http\Controllers\API\Item\ItemController;
 
 use App\Http\Middleware\JWTMiddleware;
 
@@ -52,11 +53,19 @@ Route::middleware([JWTMiddleware::class])->group( function () {
     Route::delete('/clubhouse/{id}', [ClubhouseController::class, 'destroy']);
 });
 
-// API FOR ITEM CATEGORY
+// API FOR ITEM 
 Route::middleware([JWTMiddleware::class])->group( function () {
+    // API FOR CRUD ITEM CATEGORY
     Route::get('/itemCategory', [ItemCategoryController::class, 'index']);
     Route::post('/itemCategory', [ItemCategoryController::class, 'store']);
     Route::get('/itemCategory/{id}', [ItemCategoryController::class, 'show']);
     Route::put('/itemCategory/{id}', [ItemCategoryController::class, 'update']);
     Route::delete('/itemCategory/{id}', [ItemCategoryController::class, 'destroy']);
+
+    // API FOR CRUD ITEM
+    Route::get('/item', [ItemController::class, 'index']);
+    Route::post('/item', [ItemController::class, 'store']);
+    Route::get('/item/{id}', [ItemController::class, 'show']);
+    Route::put('/item/{id}', [ItemController::class, 'update']);
+    Route::delete('/item/{id}', [ItemController::class, 'destroy']);
 });
