@@ -7,6 +7,7 @@ use App\Http\Controllers\API\TicketTypeController;
 use App\Http\Controllers\API\Purchase\CartController;
 use App\Http\Controllers\API\Purchase\CheckoutController;
 use App\Http\Controllers\API\ClubhouseController;
+use App\Http\Controllers\API\Item\ItemCategoryController;
 
 use App\Http\Middleware\JWTMiddleware;
 
@@ -49,4 +50,13 @@ Route::middleware([JWTMiddleware::class])->group( function () {
     Route::get('/clubhouse/{id}', [ClubhouseController::class, 'show']);
     Route::put('/clubhouse/{id}', [ClubhouseController::class, 'update']);
     Route::delete('/clubhouse/{id}', [ClubhouseController::class, 'destroy']);
+});
+
+// API FOR ITEM CATEGORY
+Route::middleware([JWTMiddleware::class])->group( function () {
+    Route::get('/itemCategory', [ItemCategoryController::class, 'index']);
+    Route::post('/itemCategory', [ItemCategoryController::class, 'store']);
+    Route::get('/itemCategory/{id}', [ItemCategoryController::class, 'show']);
+    Route::put('/itemCategory/{id}', [ItemCategoryController::class, 'update']);
+    Route::delete('/itemCategory/{id}', [ItemCategoryController::class, 'destroy']);
 });
