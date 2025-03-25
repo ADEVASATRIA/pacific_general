@@ -33,7 +33,7 @@ class ItemCategoryController extends Controller
                 'success' => false,
                 'message' => 'Failed to retrieve item category data',
                 'error' => $e->getMessage(),
-            ]);
+            ], 500);
         }
     }
     // Alur untuk menyimpan data Item Category baru untuk role super admin / role_id = 1

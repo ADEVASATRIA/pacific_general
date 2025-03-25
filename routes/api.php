@@ -9,6 +9,7 @@ use App\Http\Controllers\API\Purchase\CheckoutController;
 use App\Http\Controllers\API\ClubhouseController;
 use App\Http\Controllers\API\Item\ItemCategoryController;
 use App\Http\Controllers\API\Item\ItemController;
+use App\Http\Controllers\API\Item\ManagementItemController;
 
 use App\Http\Middleware\JWTMiddleware;
 
@@ -68,4 +69,12 @@ Route::middleware([JWTMiddleware::class])->group( function () {
     Route::get('/item/{id}', [ItemController::class, 'show']);
     Route::put('/item/{id}', [ItemController::class, 'update']);
     Route::delete('/item/{id}', [ItemController::class, 'destroy']);
+
+    // API FOR UPDATE QTY ITEM
+    Route::post('/updateQtyItem/{id}', [ManagementItemController::class, 'updateQtyItem']);
+
+    // API FOR GET ITEM LOG DATA
+    Route::get('/showItemLog', [ManagementItemController::class, 'showAllItemLog']);
+    Route::get('/showItemLog/by-log-id/{id}', [ManagementItemController::class, 'showItemLog']);
+    Route::get('/showItemLog/by-item-log/{id}', [ManagementItemController::class, 'showItemByItemID']);
 });
