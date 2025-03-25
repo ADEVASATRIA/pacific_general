@@ -46,7 +46,7 @@ class CheckoutController extends Controller
 
             DB::commit();
             return response()->json([
-                'message' => 'Checkout successful & Ticket Successfully Generated',
+                'message' => 'Checkout successful',
                 'purchase_id' => $purchase->id,
                 'status' => 'Paid',
             ], 200);

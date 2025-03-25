@@ -19,9 +19,10 @@ class CreatePurchaseController extends Controller
         $subTotal = $items->sum(fn($item) => $item['quantity'] * $item['price']);
         $tax = $subTotal * 0.10;
         $total = $subTotal - $tax;
-
+    
         return compact('subTotal', 'tax', 'total');
     }
+    
 
     // Buat Purchase
     public function createPurchase($customerId, $totals)
@@ -45,6 +46,7 @@ class CreatePurchaseController extends Controller
         $data = $items->map(fn($item) => [
             'purchase_id' => $purchaseId,
             'ticket_type_id' => $item['ticket_type_id'],
+            'item_id' => $item['item_id'],
             'type_purchase' => $item['type_purchase'],
             'name' => $item['name'],
             'qty' => $item['quantity'],
@@ -52,7 +54,8 @@ class CreatePurchaseController extends Controller
             'created_at' => now(),
             'updated_at' => now(),
         ])->toArray();
-
+    
         PurchaseDetail::insert($data);
     }
+    
 }
