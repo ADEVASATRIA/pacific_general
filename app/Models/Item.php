@@ -42,4 +42,8 @@ class Item extends DefaultModel
     public function purchaseDetails(){
         return $this->hasMany(PurchaseDetail::class, 'item_id');
     }
+
+    public function packageDetails(){
+        return $this->hasMany(\App\Models\Package\PackageDetail::class, 'item_id');
+    }
 }

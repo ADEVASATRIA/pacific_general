@@ -48,4 +48,8 @@ class PackageCategory extends DefaultModel
             ]
         ]);
     }
+
+    public function packages(){
+        return $this->hasMany(\App\Models\Package\Package::class);
+    }
 }

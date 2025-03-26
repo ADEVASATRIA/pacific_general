@@ -11,6 +11,7 @@ use App\Http\Controllers\API\Item\ItemCategoryController;
 use App\Http\Controllers\API\Item\ItemController;
 use App\Http\Controllers\API\Item\ManagementItemController;
 use App\Http\Controllers\API\Package\PackageCategoryController;
+use App\Http\Controllers\API\Package\PackageController;
 
 use App\Http\Middleware\JWTMiddleware;
 
@@ -88,4 +89,7 @@ Route::middleware([JWTMiddleware::class])->group( function () {
     Route::get('/packageCategory/{id}', [PackageCategoryController::class, 'show']);
     Route::put('/packageCategory/{id}', [PackageCategoryController::class, 'update']);
     Route::delete('/packageCategory/{id}', [PackageCategoryController::class, 'destroy']);
+
+    // API FOR CRUD PACKAGE
+    Route::post('/package', [PackageController::class, 'storePackage']);
 });

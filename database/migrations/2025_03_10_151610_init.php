@@ -18,7 +18,8 @@ use App\Models\PurchaseDetail;
 use App\Models\Ticket;
 use App\Models\TicketEntry;
 use App\Models\PackageCategory;
-
+use App\Models\Package\Package;
+use App\Models\Package\PackageDetail;
 
 return new class extends Migration
 {
@@ -39,6 +40,8 @@ return new class extends Migration
         Ticket::tableInit();
         TicketEntry::tableInit();
         PackageCategory::tableInit();
+        Package::tableInit();
+        PackageDetail::tableInit();
     }
 
     /**
@@ -61,5 +64,7 @@ return new class extends Migration
         Ticket::tableDrop();
         TicketEntry::tableDrop();
         PackageCategory::tableDrop();
+        Package::tableDrop();
+        PackageDetail::tableDrop();
     }
 };

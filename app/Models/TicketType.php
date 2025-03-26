@@ -98,4 +98,8 @@ class TicketType extends DefaultModel
     public function purchaseDetail(){
         return $this->hasMany(PurchaseDetail::class);
     }
+
+    public function packageDetail(){
+        return $this->hasMany(\App\Models\Package\PackageDetail::class);
+    }
 }
