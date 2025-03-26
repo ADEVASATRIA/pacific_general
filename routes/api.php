@@ -10,6 +10,7 @@ use App\Http\Controllers\API\ClubhouseController;
 use App\Http\Controllers\API\Item\ItemCategoryController;
 use App\Http\Controllers\API\Item\ItemController;
 use App\Http\Controllers\API\Item\ManagementItemController;
+use App\Http\Controllers\API\Package\PackageCategoryController;
 
 use App\Http\Middleware\JWTMiddleware;
 
@@ -77,4 +78,14 @@ Route::middleware([JWTMiddleware::class])->group( function () {
     Route::get('/showItemLog', [ManagementItemController::class, 'showAllItemLog']);
     Route::get('/showItemLog/by-log-id/{id}', [ManagementItemController::class, 'showItemLog']);
     Route::get('/showItemLog/by-item-log/{id}', [ManagementItemController::class, 'showItemByItemID']);
+});
+
+// API FOR PACKAGE
+Route::middleware([JWTMiddleware::class])->group( function () {
+    // API FOR CRUD PACKAGE CATEGORY
+    Route::get('/packageCategory', [PackageCategoryController::class, 'index']);
+    Route::post('/packageCategory', [PackageCategoryController::class, 'store']);
+    Route::get('/packageCategory/{id}', [PackageCategoryController::class, 'show']);
+    Route::put('/packageCategory/{id}', [PackageCategoryController::class, 'update']);
+    Route::delete('/packageCategory/{id}', [PackageCategoryController::class, 'destroy']);
 });

@@ -9,6 +9,7 @@ use App\Models\Role;
 use App\Models\TicketType;
 use App\Models\Clubhouse;
 use App\Models\ItemCategory;
+use App\Models\PackageCategory;
 class initSeeder extends Seeder
 {
     public function run(): void
@@ -17,5 +18,6 @@ class initSeeder extends Seeder
         Clubhouse::tableSeed();
         TicketType::tableSeed();
         ItemCategory::tableSeed();
+        PackageCategory::tableSeed();
     }
 }
