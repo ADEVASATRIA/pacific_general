@@ -78,6 +78,14 @@ class ManagementItemController extends Controller
             }
 
             $itemLog = \App\Models\ItemLog::all();
+
+            if($itemLog->isEmpty()){
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Item Log not found',
+                ], 404);
+            }
+
             return response()->json([
                 'success' => true,
                 'message' => 'List All Item Log Data',
@@ -103,6 +111,14 @@ class ManagementItemController extends Controller
                 ], 403);
             }
             $itemLog = \App\Models\ItemLog::find($id);
+
+            if (!$itemLog) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Item Log not found',
+                ], 404);
+            }
+
             return response()->json([
                 'success' => true,
                 'message' => 'Item Log Retrieved successfully',

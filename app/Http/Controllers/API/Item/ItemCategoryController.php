@@ -22,6 +22,14 @@ class ItemCategoryController extends Controller
             }
 
             $itemCategory = \App\Models\ItemCategory::all();
+
+            if ($itemCategory->isEmpty()) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Item Category data not found',
+                ], 404);
+            }
+
             return response()->json([
                 'success' => true,
                 'message' => 'List All Item Category',
@@ -95,6 +103,14 @@ class ItemCategoryController extends Controller
             }
 
             $itemCategory = \App\Models\ItemCategory::find($id);
+
+            if (!$itemCategory) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Item Category not found',
+                ], 404);
+            }
+
             return response()->json([
                 'success' => true,
                 'message' => 'Item Category retrieved successfully',
@@ -136,6 +152,14 @@ class ItemCategoryController extends Controller
             }
 
             $itemCategory = \App\Models\ItemCategory::find($id);
+            
+            if(!$itemCategory) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Item Category not found',
+                ], 404);
+            }
+
             $itemCategory->name = $request->name;
             $itemCategory->description = $request->description;
             $itemCategory->status = $request->status;
@@ -168,6 +192,14 @@ class ItemCategoryController extends Controller
             }
 
             $itemCategory = \App\Models\ItemCategory::find($id);
+            
+            if(!$itemCategory) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Item Category not found',
+                ], 404);
+            }
+
             $itemCategory->delete();
 
             return response()->json([

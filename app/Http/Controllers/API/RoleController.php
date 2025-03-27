@@ -15,6 +15,15 @@ class RoleController extends Controller
     {
         try {
             $role = Role::all();
+
+            if(empty($role)) {
+                return response()->json([
+                    'success' => true,
+                    'message' => 'Role is empty',
+                    'data' => $role
+                ], 200);
+            }
+
             return response()->json([
                 'success' => true,
                 'message' => 'List All Roles',

@@ -23,6 +23,14 @@ class ClubhouseController extends Controller
             }
 
             $clubhouse = \App\Models\Clubhouse::all();
+            
+            if(!$clubhouse) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Clubhouse not found',
+                ], 404);
+            }
+
             return response()->json([
                 'success' => true,
                 'message' => 'List All Clubhouse',
@@ -98,6 +106,14 @@ class ClubhouseController extends Controller
             }
 
             $clubhouse = \App\Models\Clubhouse::find($id);
+
+            if(!$clubhouse) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Clubhouse not found',
+                ], 404);
+            }
+
             return response()->json([
                 'success' => true,
                 'message' => 'Clubhouse retrieved successfully',
@@ -140,6 +156,14 @@ class ClubhouseController extends Controller
             }
 
             $clubhouse = \App\Models\Clubhouse::find($id);
+            
+            if(!$clubhouse) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Clubhouse not found',
+                ], 404);
+            }
+            
             $clubhouse->name = $request->name;
             $clubhouse->location = $request->location;
             $clubhouse->phone = $request->phone;
@@ -173,8 +197,16 @@ class ClubhouseController extends Controller
             }
 
             $clubhouse = \App\Models\Clubhouse::find($id);
+            
+            if (!$clubhouse) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Clubhouse not found',
+                ], 404);
+            }
+            
             $clubhouse->delete();
-
+            
             return response()->json([
                 'success' => true,
                 'message' => 'Clubhouse deleted successfully',

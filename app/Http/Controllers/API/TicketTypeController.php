@@ -22,6 +22,15 @@ class TicketTypeController extends Controller
             }
 
             $ticketType = \App\Models\TicketType::all();
+
+            if(empty($ticketType)) {
+                return response()->json([
+                    'success' => true,
+                    'message' => 'Ticket Type is empty',
+                    'data' => $ticketType
+                ], 200);
+            }
+
             return response()->json([
                 'success' => true,
                 'message' => 'List All Ticket Type',
@@ -102,6 +111,13 @@ class TicketTypeController extends Controller
             }
 
             $ticketType = \App\Models\TicketType::find($id);
+            if(empty($ticketType)) {
+                return response()->json([
+                    'success' => true,
+                    'message' => 'Ticket Type not found',
+                    'data' => $ticketType
+                ], 404);
+            }
             return response()->json([
                 'success' => true,
                 'message' => 'Ticket Type retrieved successfully',
@@ -147,6 +163,14 @@ class TicketTypeController extends Controller
             }
 
             $ticketType = \App\Models\TicketType::find($id);
+
+            if (!$ticketType) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Ticket Type not found',
+                ], 404);
+            }
+
             $ticketType->clubhouse_id = $request->clubhouse_id;
             $ticketType->type_ticket = $request->type_ticket;
             $ticketType->name = $request->name;
@@ -182,6 +206,14 @@ class TicketTypeController extends Controller
             }
 
             $ticketType = \App\Models\TicketType::find($id);
+
+            if (!$ticketType) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Ticket Type not found',
+                ], 404);
+            }
+
             $ticketType->delete();
 
             return response()->json([
