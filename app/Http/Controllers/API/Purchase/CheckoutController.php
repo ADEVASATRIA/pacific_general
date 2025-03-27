@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers\API\Purchase;
 
+use App\Http\Controllers\API\Ticket\TicketPackageController;
 use App\Http\Controllers\Controller;
+use App\Models\PurchaseDetail;
 use Illuminate\Http\Request;
 use App\Models\Purchase;
 use Illuminate\Support\Facades\DB;
@@ -42,7 +44,25 @@ class CheckoutController extends Controller
                 'status' => 2,
             ]);
 
-            TicketController::generateTickets($purchase->id);
+            $purchaseDetail = PurchaseDetail::where('purchase_id', $purchase->id)->get();
+            
+            $hasRegularTickets = false;
+            $hasPackageTickets = false;
+
+            foreach ($purchaseDetail as $detail) {
+                if ($detail->type_purchase != 3) {
+                    $hasRegularTickets = true;
+                } else {
+                    $hasPackageTickets = true;
+                }
+            }
+
+            if ($hasRegularTickets) {
+                TicketController::generateTickets($purchase->id);
+            }
+            if ($hasPackageTickets) {
+                TicketPackageController::generateTicketPackage($purchase->id); 
+            }
 
             DB::commit();
             return response()->json([

@@ -40,4 +40,8 @@ class Package extends DefaultModel
     public function packageDetails(){
         return $this->hasMany(PackageDetail::class);
     }
+
+    public function purchaseDetails(){
+        return $this->hasMany(\App\Models\PurchaseDetail::class);
+    }    
 }

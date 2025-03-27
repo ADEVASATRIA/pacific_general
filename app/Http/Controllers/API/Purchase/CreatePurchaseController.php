@@ -47,6 +47,7 @@ class CreatePurchaseController extends Controller
             'purchase_id' => $purchaseId,
             'ticket_type_id' => $item['ticket_type_id'],
             'item_id' => $item['item_id'],
+            'package_id' => $item['package_id'],
             'type_purchase' => $item['type_purchase'],
             'name' => $item['name'],
             'qty' => $item['quantity'],

@@ -35,12 +35,12 @@ return new class extends Migration
         ItemCategory::tableInit();
         Item::tableInit();
         ItemLog::tableInit();
+        PackageCategory::tableInit();
+        Package::tableInit();
         Purchase::tableInit();
         PurchaseDetail::tableInit();
         Ticket::tableInit();
         TicketEntry::tableInit();
-        PackageCategory::tableInit();
-        Package::tableInit();
         PackageDetail::tableInit();
     }
 

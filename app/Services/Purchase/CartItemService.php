@@ -39,6 +39,19 @@ class CartItemService
                     'clubhouse_id' => null,
                     'duration' => null,
                 ];
+            } elseif (!empty($item['package_id'])) {
+                $package = \App\Models\Package\Package::findOrFail($item['package_id']);
+                return [
+                    'ticket_type_id' => null,
+                    'item_id' => null,
+                    'type_purchase' => 3,
+                    'package_id' => $package->id,
+                    'name' => $package->name,
+                    'quantity' => $item['quantity'],
+                    'price' => $package->price,
+                    'clubhouse_id' => null,
+                    'duration' => null,
+                ];
             }
         });
     }

@@ -38,6 +38,7 @@ class CartController extends Controller
             'items.*.quantity' => 'required|integer|min:1',
             'items.*.type_ticket_id' => 'nullable|integer|exists:ticket_types,id',
             'items.*.item_id' => 'nullable|integer|exists:items,id',
+            'items.*.package_id' => 'nullable|integer|exists:packages,id',
         ]);
 
         DB::beginTransaction();
