@@ -26,15 +26,18 @@ class Role extends DefaultModel
         Role::insert([
             [
                 'name' => 'superadmin',
-                'status' => true
+                'status' => true,
+                'created_at' => now(),
             ],
             [
                 'name' => 'admin',
-                'status' => true
+                'status' => true,
+                'created_at' => now(),
             ],
             [
                 'name' => 'owner',
-                'status' => true
+                'status' => true,
+                'created_at' => now(),
             ]
         ]);
     }

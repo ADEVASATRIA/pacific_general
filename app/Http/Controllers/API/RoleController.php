@@ -82,13 +82,13 @@ class RoleController extends Controller
         try {
             $role = Role::find($id);
 
-            if ($role->isEmpty()) {
-                return response()->json([
-                    'success' => true,
-                    'message' => 'Role is empty',
-                    'data' => []
-                ], 200);
-            }
+            // if ($role->isEmpty()) {
+            //     return response()->json([
+            //         'success' => true,
+            //         'message' => 'Role is empty',
+            //         'data' => []
+            //     ], 200);
+            // }
 
             return response()->json([
                 'success' => true,
@@ -111,12 +111,12 @@ class RoleController extends Controller
         try {
             $role = Role::find($id);
 
-            if (!$role) {
-                return response()->json([
-                    'success' => false,
-                    'message' => 'Role not found',
-                ], 404);
-            }
+            // if (!$role) {
+            //     return response()->json([
+            //         'success' => false,
+            //         'message' => 'Role not found',
+            //     ], 404);
+            // }
 
             $validator = Validator::make($request->all(), [
                 'name' => 'required|string|max:255',
@@ -154,15 +154,6 @@ class RoleController extends Controller
     {
         try {
             $role = Role::find($id);
-
-            if ($role->isEmpty()) {
-                return response()->json([
-                    'success' => true,
-                    'message' => 'Role is empty',
-                    'data' => []
-                ], 200);
-            }
-
             $role->delete();
 
             return response()->json([

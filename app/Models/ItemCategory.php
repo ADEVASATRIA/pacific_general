@@ -30,17 +30,20 @@ class ItemCategory extends DefaultModel
             [
                 'name' => 'Makanan',
                 'description' => 'Makanan',
-                'status' => true
+                'status' => true,
+                'created_at' => now(),
             ],
             [
                 'name' => 'Minuman',
                 'description' => 'Minuman',
-                'status' => true
+                'status' => true,
+                'created_at' => now(),
             ],
             [
                 'name' => 'Snack',
                 'description' => 'Snack',
-                'status' => true
+                'status' => true,
+                'created_at' => now(),
             ]
         ]);
     }

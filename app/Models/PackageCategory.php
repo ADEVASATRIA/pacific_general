@@ -29,22 +29,26 @@ class PackageCategory extends DefaultModel
             [
                 'name' => 'Ticket',
                 'type_category' => 1,
-                'status' => true
+                'status' => true,
+                'created_at' => now(),
             ],
             [
                 'name' => 'Member',
                 'type_category' => 2,
-                'status' => true
+                'status' => true,
+                'created_at' => now(),
             ],
             [
                 'name' => 'Items',
                 'type_category' => 3,
-                'status' => true
+                'status' => true,
+                'created_at' => now(),
             ],
             [
                 'name' => 'All',
                 'type_category' => 4,
-                'status' => true
+                'status' => true,
+                'created_at' => now(),
             ]
         ]);
     }

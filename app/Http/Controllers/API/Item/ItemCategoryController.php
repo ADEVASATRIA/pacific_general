@@ -23,12 +23,12 @@ class ItemCategoryController extends Controller
 
             $itemCategory = \App\Models\ItemCategory::all();
 
-            if ($itemCategory->isEmpty()) {
-                return response()->json([
-                    'success' => false,
-                    'message' => 'Item Category data not found',
-                ], 404);
-            }
+            // if ($itemCategory->isEmpty()) {
+            //     return response()->json([
+            //         'success' => false,
+            //         'message' => 'Item Category data not found',
+            //     ], 404);
+            // }
 
             return response()->json([
                 'success' => true,
@@ -104,12 +104,12 @@ class ItemCategoryController extends Controller
 
             $itemCategory = \App\Models\ItemCategory::find($id);
 
-            if ($itemCategory->isEmpty()) {
-                return response()->json([
-                    'success' => false,
-                    'message' => 'Item Category data not found',
-                ], 404);
-            }
+            // if ($itemCategory->isEmpty()) {
+            //     return response()->json([
+            //         'success' => false,
+            //         'message' => 'Item Category data not found',
+            //     ], 404);
+            // }
 
             return response()->json([
                 'success' => true,
@@ -153,12 +153,12 @@ class ItemCategoryController extends Controller
 
             $itemCategory = \App\Models\ItemCategory::find($id);
             
-            if ($itemCategory->isEmpty()) {
-                return response()->json([
-                    'success' => false,
-                    'message' => 'Item Category data not found',
-                ], 404);
-            }
+            // if ($itemCategory->isEmpty()) {
+            //     return response()->json([
+            //         'success' => false,
+            //         'message' => 'Item Category data not found',
+            //     ], 404);
+            // }
 
             $itemCategory->name = $request->name;
             $itemCategory->description = $request->description;
@@ -193,12 +193,12 @@ class ItemCategoryController extends Controller
 
             $itemCategory = \App\Models\ItemCategory::find($id);
             
-            if ($itemCategory->isEmpty()) {
-                return response()->json([
-                    'success' => false,
-                    'message' => 'Item Category data not found',
-                ], 404);
-            }
+            // if ($itemCategory->isEmpty()) {
+            //     return response()->json([
+            //         'success' => false,
+            //         'message' => 'Item Category data not found',
+            //     ], 404);
+            // }
 
             $itemCategory->delete();
 

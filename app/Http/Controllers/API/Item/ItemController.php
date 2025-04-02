@@ -22,7 +22,7 @@ class ItemController extends Controller
                 ], 403);
             }
 
-            $item = \App\Models\Item::all();
+            $item = \App\Models\Item::with('categories')->get();
 
             if ($item->isEmpty()) {
                 return response()->json([

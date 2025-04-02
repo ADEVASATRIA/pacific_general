@@ -34,19 +34,22 @@ class Clubhouse extends DefaultModel
                 'name' => 'Clubhouse 1',
                 'location' => 'Jl. Raya',
                 'phone' => '08123456789',
-                'status' => true
+                'status' => true,
+                'created_at' => now(),
             ],
             [
                 'name' => 'Clubhouse 2',
                 'location' => 'Jl. Raya',
                 'phone' => '08123456789',
-                'status' => true
+                'status' => true,
+                'created_at' => now(),
             ],
             [
                 'name' => 'Clubhouse 3',
                 'location' => 'Jl. Raya',
                 'phone' => '08123456789',
-                'status' => true
+                'status' => true,
+                'created_at' => now(),
             ]
         ]);
     }

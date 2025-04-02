@@ -43,6 +43,7 @@ class TicketType extends DefaultModel
                 'price' => '40000',
                 'duration' => '1',
                 'status' => '1',
+                'created_at' => now(),
             ],
             [
                 'clubhouse_id' => null,
@@ -51,6 +52,7 @@ class TicketType extends DefaultModel
                 'price' => '40000',
                 'duration' => '1',
                 'status' => '1',
+                'created_at' => now(),
             ],
             [
                 'clubhouse_id' => '1',
@@ -59,6 +61,7 @@ class TicketType extends DefaultModel
                 'price' => '150000',
                 'duration' => '30',
                 'status' => '1',
+                'created_at' => now(),
             ],
             [
                 'clubhouse_id' => '2',
@@ -67,6 +70,7 @@ class TicketType extends DefaultModel
                 'price' => '450000',
                 'duration' => '90',
                 'status' => '1',
+                'created_at' => now(),
             ],
             [
                 'clubhouse_id' => '3',
@@ -75,6 +79,7 @@ class TicketType extends DefaultModel
                 'price' => '900000',
                 'duration' => '180',
                 'status' => '1',
+                'created_at' => now(),
             ],
         ]);
     }
