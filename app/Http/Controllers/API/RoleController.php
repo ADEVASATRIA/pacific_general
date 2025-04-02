@@ -15,28 +15,30 @@ class RoleController extends Controller
     {
         try {
             $role = Role::all();
-
-            if(empty($role)) {
+    
+            if ($role->isEmpty()) {
                 return response()->json([
                     'success' => true,
                     'message' => 'Role is empty',
-                    'data' => $role
+                    'data' => []
                 ], 200);
             }
-
+    
             return response()->json([
                 'success' => true,
                 'message' => 'List All Roles',
                 'data' => $role
             ], 200);
+
         } catch (Exception $e) {
             return response()->json([
                 'success' => false,
                 'message' => 'Failed to retrieve role data',
                 'error' => $e->getMessage(),
-            ]);
+            ], 500);
         }
     }
+    
 
     // Alur untuk menambahkan data baru untuk role
     public function store(Request $request)
@@ -80,11 +82,12 @@ class RoleController extends Controller
         try {
             $role = Role::find($id);
 
-            if (!$role) {
+            if ($role->isEmpty()) {
                 return response()->json([
-                    'success' => false,
-                    'message' => 'Role not found',
-                ], 404);
+                    'success' => true,
+                    'message' => 'Role is empty',
+                    'data' => []
+                ], 200);
             }
 
             return response()->json([
@@ -152,11 +155,12 @@ class RoleController extends Controller
         try {
             $role = Role::find($id);
 
-            if (!$role) {
+            if ($role->isEmpty()) {
                 return response()->json([
-                    'success' => false,
-                    'message' => 'Role not found',
-                ], 404);
+                    'success' => true,
+                    'message' => 'Role is empty',
+                    'data' => []
+                ], 200);
             }
 
             $role->delete();

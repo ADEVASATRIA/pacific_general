@@ -23,7 +23,7 @@ class PackageCategoryController extends Controller
 
             $packageCategory = \App\Models\PackageCategory::all();
 
-            if (!$packageCategory) {
+            if ($packageCategory->isEmpty()) {
                 return response()->json([
                     'success' => false,
                     'message' => 'Package Category not found',
@@ -104,7 +104,7 @@ class PackageCategoryController extends Controller
 
             $packageCategory = \App\Models\PackageCategory::find($id);
 
-            if (!$packageCategory) {
+            if ($packageCategory->isEmpty()) {
                 return response()->json([
                     'success' => false,
                     'message' => 'Package Category not found',
@@ -153,7 +153,7 @@ class PackageCategoryController extends Controller
 
             $packageCategory = \App\Models\PackageCategory::find($id);
             
-            if(!$packageCategory) {
+            if ($packageCategory->isEmpty()) {
                 return response()->json([
                     'success' => false,
                     'message' => 'Package Category not found',
@@ -193,7 +193,7 @@ class PackageCategoryController extends Controller
 
             $packageCategory = \App\Models\PackageCategory::find($id);
             
-            if(!$packageCategory) {
+            if ($packageCategory->isEmpty()) {
                 return response()->json([
                     'success' => false,
                     'message' => 'Package Category not found',

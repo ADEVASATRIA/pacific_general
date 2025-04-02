@@ -34,10 +34,10 @@ class ManagementItemController extends Controller
             }
     
             $item = \App\Models\Item::find($id);
-            if (!$item) {
+            if ($item->isEmpty()) {
                 return response()->json([
                     'success' => false,
-                    'message' => 'Item not found'
+                    'message' => 'Item not found',
                 ], 404);
             }
     
@@ -112,7 +112,7 @@ class ManagementItemController extends Controller
             }
             $itemLog = \App\Models\ItemLog::find($id);
 
-            if (!$itemLog) {
+            if($itemLog->isEmpty()){
                 return response()->json([
                     'success' => false,
                     'message' => 'Item Log not found',
@@ -146,10 +146,10 @@ class ManagementItemController extends Controller
             }
 
             $item = \App\Models\Item::find($item_id);
-            if (!$item) {
+            if ($item->isEmpty()) {
                 return response()->json([
                     'success' => false,
-                    'message' => 'Item not found'
+                    'message' => 'Item not found',
                 ], 404);
             }
     

@@ -104,10 +104,10 @@ class ItemCategoryController extends Controller
 
             $itemCategory = \App\Models\ItemCategory::find($id);
 
-            if (!$itemCategory) {
+            if ($itemCategory->isEmpty()) {
                 return response()->json([
                     'success' => false,
-                    'message' => 'Item Category not found',
+                    'message' => 'Item Category data not found',
                 ], 404);
             }
 
@@ -153,10 +153,10 @@ class ItemCategoryController extends Controller
 
             $itemCategory = \App\Models\ItemCategory::find($id);
             
-            if(!$itemCategory) {
+            if ($itemCategory->isEmpty()) {
                 return response()->json([
                     'success' => false,
-                    'message' => 'Item Category not found',
+                    'message' => 'Item Category data not found',
                 ], 404);
             }
 
@@ -193,10 +193,10 @@ class ItemCategoryController extends Controller
 
             $itemCategory = \App\Models\ItemCategory::find($id);
             
-            if(!$itemCategory) {
+            if ($itemCategory->isEmpty()) {
                 return response()->json([
                     'success' => false,
-                    'message' => 'Item Category not found',
+                    'message' => 'Item Category data not found',
                 ], 404);
             }
 

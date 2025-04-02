@@ -109,7 +109,7 @@ class ItemController extends Controller
 
             $item = \App\Models\Item::find($id);
 
-            if (!$item) {
+            if ($item->isEmpty()) {
                 return response()->json([
                     'success' => false,
                     'message' => 'Item not found',
@@ -160,7 +160,7 @@ class ItemController extends Controller
 
             $item = \App\Models\Item::find($id);
             
-            if(!$item) {
+            if ($item->isEmpty()) {
                 return response()->json([
                     'success' => false,
                     'message' => 'Item not found',
@@ -201,7 +201,7 @@ class ItemController extends Controller
 
             $item = \App\Models\Item::find($id);
             
-            if(!$item) {
+            if ($item->isEmpty()) {
                 return response()->json([
                     'success' => false,
                     'message' => 'Item not found',
