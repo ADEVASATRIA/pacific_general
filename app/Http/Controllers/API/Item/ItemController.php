@@ -24,12 +24,12 @@ class ItemController extends Controller
 
             $item = \App\Models\Item::with('categories')->get();
 
-            if ($item->isEmpty()) {
-                return response()->json([
-                    'success' => false,
-                    'message' => 'Item not found',
-                ], 404);
-            }
+            // if ($item->isEmpty()) {
+            //     return response()->json([
+            //         'success' => false,
+            //         'message' => 'Item not found',
+            //     ], 404);
+            // }
 
             return response()->json([
                 'success' => true,
@@ -109,12 +109,12 @@ class ItemController extends Controller
 
             $item = \App\Models\Item::find($id);
 
-            if ($item->isEmpty()) {
-                return response()->json([
-                    'success' => false,
-                    'message' => 'Item not found',
-                ], 404);
-            }
+            // if ($item->isEmpty()) {
+            //     return response()->json([
+            //         'success' => false,
+            //         'message' => 'Item not found',
+            //     ], 404);
+            // }
 
             return response()->json([
                 'success' => true,
@@ -160,12 +160,12 @@ class ItemController extends Controller
 
             $item = \App\Models\Item::find($id);
             
-            if ($item->isEmpty()) {
-                return response()->json([
-                    'success' => false,
-                    'message' => 'Item not found',
-                ], 404);
-            }
+            // if ($item->isEmpty()) {
+            //     return response()->json([
+            //         'success' => false,
+            //         'message' => 'Item not found',
+            //     ], 404);
+            // }
 
             $item->categories_id = $request->categories_id;
             $item->name = $request->name;
@@ -201,12 +201,12 @@ class ItemController extends Controller
 
             $item = \App\Models\Item::find($id);
             
-            if ($item->isEmpty()) {
-                return response()->json([
-                    'success' => false,
-                    'message' => 'Item not found',
-                ], 404);
-            }
+            // if ($item->isEmpty()) {
+            //     return response()->json([
+            //         'success' => false,
+            //         'message' => 'Item not found',
+            //     ], 404);
+            // }
 
             $item->delete();
 
