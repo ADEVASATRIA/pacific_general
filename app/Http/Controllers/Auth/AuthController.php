@@ -80,10 +80,14 @@ class AuthController extends Controller
         ], 200);
     }
 
-    public function logout(){
-        JWTAuth::invalidate(JWTAuth::getToken());
-
-        return response()->json(['message' => 'Successfully logged out']);
+    public function logout(Request $request)
+    {
+        try {
+            JWTAuth::invalidate(JWTAuth::getToken()); // Menghapus token
+            return response()->json(['message' => 'Successfully logged out'], 200);
+        } catch (\Exception $e) {
+            return response()->json(['error' => 'Logout failed'], 500);
+        }
     }
 
     public function profile()

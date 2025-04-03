@@ -21,6 +21,8 @@ Route::post('/login', [AuthController::class, 'login']);
 
 Route::get('/roles', [RoleController::class, 'index']);
 
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+
 // API FOR CRUD ROLES
 Route::middleware([JWTMiddleware::class])->group(function () {
     Route::post('/roles', [RoleController::class, 'store']);
