@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Models\Clubhouse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Exception;
@@ -43,20 +44,20 @@ class ClubhouseController extends Controller
     {
         try {
             $user = auth()->user();
-            if ($user->role_id != 1) {
+            if (!$user || $user->role_id != 1) {
                 return response()->json([
                     'success' => false,
-                    'message' => 'You dont have permission to access this resource',
+                    'message' => 'You do not have permission to access this resource',
                 ], 403);
             }
-
+    
             $validator = Validator::make($request->all(), [
                 'name' => 'required|string|max:255',
                 'location' => 'required|string|max:255',
                 'phone' => 'required|string|max:255',
                 'status' => 'required|boolean',
             ]);
-
+    
             if ($validator->fails()) {
                 return response()->json([
                     'success' => false,
@@ -64,14 +65,14 @@ class ClubhouseController extends Controller
                     'errors' => $validator->errors()
                 ], 422);
             }
-
-            $clubhouse = \App\Models\Clubhouse::create([
+    
+            $clubhouse = Clubhouse::create([
                 'name' => $request->name,
                 'location' => $request->location,
                 'phone' => $request->phone,
-                'status' => $request->status,
+                'status' => boolval($request->status),
             ]);
-
+    
             return response()->json([
                 'success' => true,
                 'message' => 'Clubhouse created successfully',
@@ -85,6 +86,7 @@ class ClubhouseController extends Controller
             ], 500);
         }
     }
+    
 
     // Digunakan untuk menampilkan Data clubhouse menurut id yang dimasukkan dengan user role super admin / role_id = 1
     public function show(string $id)
