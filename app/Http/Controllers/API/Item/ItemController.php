@@ -24,13 +24,6 @@ class ItemController extends Controller
 
             $item = \App\Models\Item::with('categories')->get();
 
-            // if ($item->isEmpty()) {
-            //     return response()->json([
-            //         'success' => false,
-            //         'message' => 'Item not found',
-            //     ], 404);
-            // }
-
             return response()->json([
                 'success' => true,
                 'message' => 'List All Item',
@@ -109,13 +102,6 @@ class ItemController extends Controller
 
             $item = \App\Models\Item::find($id);
 
-            // if ($item->isEmpty()) {
-            //     return response()->json([
-            //         'success' => false,
-            //         'message' => 'Item not found',
-            //     ], 404);
-            // }
-
             return response()->json([
                 'success' => true,
                 'message' => 'Item retrieved successfully',
@@ -160,13 +146,6 @@ class ItemController extends Controller
 
             $item = \App\Models\Item::find($id);
             
-            // if ($item->isEmpty()) {
-            //     return response()->json([
-            //         'success' => false,
-            //         'message' => 'Item not found',
-            //     ], 404);
-            // }
-
             $item->categories_id = $request->categories_id;
             $item->name = $request->name;
             $item->price = $request->price;
@@ -200,14 +179,7 @@ class ItemController extends Controller
             }
 
             $item = \App\Models\Item::find($id);
-            
-            // if ($item->isEmpty()) {
-            //     return response()->json([
-            //         'success' => false,
-            //         'message' => 'Item not found',
-            //     ], 404);
-            // }
-
+        
             $item->delete();
 
             return response()->json([
