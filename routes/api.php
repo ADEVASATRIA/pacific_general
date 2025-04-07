@@ -95,4 +95,6 @@ Route::middleware([JWTMiddleware::class])->group( function () {
 
     // API FOR CRUD PACKAGE
     Route::post('/package', [PackageController::class, 'storePackage']);
+    Route::get('/package', [PackageController::class, 'index']);
+    Route::get('/package/{id}', [PackageController::class, 'show']);
 });
