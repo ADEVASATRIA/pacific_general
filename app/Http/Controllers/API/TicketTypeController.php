@@ -22,16 +22,6 @@ class TicketTypeController extends Controller
             }
 
             $ticketType = \App\Models\TicketType::with('clubhouse')->get();
-
-
-            // if(empty($ticketType)) {
-            //     return response()->json([
-            //         'success' => true,
-            //         'message' => 'Ticket Type is empty',
-            //         'data' => $ticketType
-            //     ], 200);
-            // }
-
             return response()->json([
                 'success' => true,
                 'message' => 'List All Ticket Type',

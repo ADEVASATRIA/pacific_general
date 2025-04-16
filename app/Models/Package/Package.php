@@ -17,15 +17,16 @@ class Package extends DefaultModel
         'status',
     ];
 
-    public static function tableInit(){
-        Schema::create(self::getTableName(), function (Blueprint $table){
+    public static function tableInit()
+    {
+        Schema::create(self::getTableName(), function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('package_category_id');
             $table->string('name');
             $table->unsignedInteger('price');
             $table->unsignedInteger('duration')->comment('days');
             $table->boolean('status');
-            
+
             $table->timestamps();
             $table->softDeletes();
 
@@ -33,15 +34,20 @@ class Package extends DefaultModel
         });
     }
 
-    public function packageCategory(){
-        return $this->belongsTo(PackageCategory::class);
-    }
+    // App\Models\Package.php
+    public function packageCategory()
+    {
+        return $this->belongsTo(PackageCategory::class, 'package_category_id');
+    }    
 
-    public function packageDetails(){
+
+    public function packageDetails()
+    {
         return $this->hasMany(PackageDetail::class);
     }
 
-    public function purchaseDetails(){
+    public function purchaseDetails()
+    {
         return $this->hasMany(\App\Models\PurchaseDetail::class);
-    }    
+    }
 }

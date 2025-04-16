@@ -97,4 +97,6 @@ Route::middleware([JWTMiddleware::class])->group( function () {
     Route::post('/package', [PackageController::class, 'storePackage']);
     Route::get('/package', [PackageController::class, 'index']);
     Route::get('/package/{id}', [PackageController::class, 'show']);
+    Route::delete('/package/{id}', [PackageController::class, 'destroy']);
+    Route::put('/package/{id}', [PackageController::class, 'updatePackage']);
 });
