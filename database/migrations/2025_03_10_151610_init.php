@@ -21,6 +21,9 @@ use App\Models\PackageCategory;
 use App\Models\Package\Package;
 use App\Models\Package\PackageDetail;
 
+use App\Models\Promo\Promo;
+use App\Models\Promo\PromoLog;
+
 return new class extends Migration
 {
     public function up(): void
@@ -42,6 +45,8 @@ return new class extends Migration
         Ticket::tableInit();
         TicketEntry::tableInit();
         PackageDetail::tableInit();
+        Promo::tableInit();
+        PromoLog::tableInit();
     }
 
     /**
@@ -66,5 +71,7 @@ return new class extends Migration
         PackageCategory::tableDrop();
         Package::tableDrop();
         PackageDetail::tableDrop();
+        Promo::tableDrop();
+        PromoLog::tableDrop();
     }
 };

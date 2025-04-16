@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use App\Models\Promo\PromoLog;
 
 class Customer extends DefaultModel
 {
@@ -24,5 +25,10 @@ class Customer extends DefaultModel
             $table->timestamps();
             $table->softDeletes();
         });
+    }
+
+    public function promoLogs()
+    {
+        return $this->hasMany(PromoLog::class);
     }
 }

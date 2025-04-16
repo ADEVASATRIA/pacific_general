@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use App\Models\Promo\PromoLog;
 
 class Purchase extends DefaultModel
 {
@@ -47,4 +48,10 @@ class Purchase extends DefaultModel
     public function purchaseDetails(){
         return $this->hasMany(PurchaseDetail::class);
     }
+
+    public function promoLogs(){
+        return $this->hasMany(PromoLog::class);
+    }
 }
+
+
