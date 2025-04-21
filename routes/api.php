@@ -12,6 +12,7 @@ use App\Http\Controllers\API\Item\ItemController;
 use App\Http\Controllers\API\Item\ManagementItemController;
 use App\Http\Controllers\API\Package\PackageCategoryController;
 use App\Http\Controllers\API\Package\PackageController;
+use App\Http\Controllers\API\Promo\PromoController;
 
 use App\Http\Middleware\JWTMiddleware;
 
@@ -99,4 +100,14 @@ Route::middleware([JWTMiddleware::class])->group( function () {
     Route::get('/package/{id}', [PackageController::class, 'show']);
     Route::delete('/package/{id}', [PackageController::class, 'destroy']);
     Route::put('/package/{id}', [PackageController::class, 'updatePackage']);
+});
+
+// API FOR PROMO
+Route::middleware([JWTMiddleware::class])->group( function () {
+    // API FOR CRUD PROMO
+    Route::get('/promo', [PromoController::class, 'index']);
+    Route::post('/promo', [PromoController::class, 'store']);
+    Route::get('/promo/{id}', [PromoController::class, 'show']);
+    Route::put('/promo/{id}', [PromoController::class, 'update']);
+    Route::delete('/promo/{id}', [PromoController::class, 'destroy']);
 });

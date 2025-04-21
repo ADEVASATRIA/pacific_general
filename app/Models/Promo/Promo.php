@@ -28,7 +28,7 @@ class Promo extends DefaultModel
             $table->increments('id');
             $table->string('name');
             $table->string('code')->unique();
-            $table->enum('type', ['percentage', 'fixed']);
+            $table->enum('type', ['1', '2'])->comment('1:percentage, 2:fixed');
             $table->unsignedInteger('value');
             $table->unsignedInteger('max_discount')->nullable();
             $table->unsignedInteger('min_order_value')->nullable();
