@@ -7,6 +7,9 @@ use Exception;
 use Illuminate\Http\Request;
 
 use App\Models\Purchase;
+use App\Models\Promo\Promo;
+use App\Models\Promo\PromoLog;
+
 use Illuminate\Support\Facades\DB;
 
 use App\Http\Controllers\API\Purchase\CreatePurchaseController;
@@ -34,26 +37,37 @@ class CartController extends Controller
         $request->validate([
             'customer_name' => 'required|string',
             'telephone' => 'required|string',
+            'promo_id' => 'nullable|integer|exists:promos,id',
             'items' => 'required|array',
             'items.*.quantity' => 'required|integer|min:1',
             'items.*.type_ticket_id' => 'nullable|integer|exists:ticket_types,id',
             'items.*.item_id' => 'nullable|integer|exists:items,id',
             'items.*.package_id' => 'nullable|integer|exists:packages,id',
         ]);
+        
 
         DB::beginTransaction();
         try {
 
             $customer = $this->customerService->findOrCreateCustomer($request->all());
-
             $items = $this->cartItemService->processItems($request->items);
 
             $this->memberPassService->handleMemberPass($customer->id, $items);
 
-            $totals = $purchaseService->calculateTotal($items);
+            $promo = $purchaseService->checkPromo($request->promo_id);
+            $totals = $purchaseService->calculateTotal($items, $promo);
             $purchase = $purchaseService->createPurchase($customer->id, $totals);
 
             $purchaseService->batchInsertPurchaseDetails($purchase->id, $items);
+
+            if ($promo) {
+                PromoLog::create([
+                    'promo_id' => $promo->id,
+                    'customer_id' => $customer->id,
+                    'purchase_id' => $purchase->id,
+                    'discount_applied' => $promo->name,
+                ]);
+            }
 
             DB::commit();
 
@@ -72,9 +86,10 @@ class CartController extends Controller
         }
     }
 
-    
+
     // Function untuk melihat keranjang menurut purchase id nya
-    public function getCartData($purchaseId){
+    public function getCartData($purchaseId)
+    {
         try {
             $purchase = Purchase::with('customer', 'purchaseDetails')->find($purchaseId);
             if (!$purchase) {

@@ -23,7 +23,7 @@ class ClubhouseController extends Controller
                 ], 403);
             }
 
-            $clubhouse = \App\Models\Clubhouse::all();
+            $clubhouse = Clubhouse::all();
 
             return response()->json([
                 'success' => true,
@@ -100,7 +100,7 @@ class ClubhouseController extends Controller
                 ], 403);
             }
 
-            $clubhouse = \App\Models\Clubhouse::find($id);
+            $clubhouse = Clubhouse::find($id);
 
             return response()->json([
                 'success' => true,
@@ -143,7 +143,7 @@ class ClubhouseController extends Controller
                 ], 422);
             }
 
-            $clubhouse = \App\Models\Clubhouse::find($id);
+            $clubhouse = Clubhouse::find($id);
             
             $clubhouse->name = $request->name;
             $clubhouse->location = $request->location;
@@ -177,7 +177,7 @@ class ClubhouseController extends Controller
                 ], 403);
             }
 
-            $clubhouse = \App\Models\Clubhouse::find($id);
+            $clubhouse = Clubhouse::find($id);
             $clubhouse->delete();
             
             return response()->json([
